@@ -1,1 +1,1 @@
-# Genetic algorithm app for building a schedule
+# Several algorithms app for building a schedule
