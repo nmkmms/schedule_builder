@@ -3,9 +3,7 @@ from collections import namedtuple
 
 # dicts for better output
 week_schedule = {1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday"}
-time_schedule = {1: "8:30-9:50", 2: "10:00-11:20", 3: "11:40-13:00",
-                 # 4: "13:30-14:50", 5: "15:00-16:20",
-                 }
+time_schedule = {1: "8:30-9:50", 2: "10:00-11:20", 3: "11:40-13:00", 4: "13:30-14:50",}
 
 # Defining and describing classes
 Classroom = namedtuple("Lesson", "building room is_big")
@@ -57,13 +55,14 @@ Gen.__repr__ = lambda g: gen_repr(g)
 c_pool = [
     Classroom(1, 101, True),
     Classroom(1, 113, False),
-    # Classroom(1, 210, False),
+    Classroom(1, 210, False),
     # Classroom(3, 215, False),
     # Classroom(3, 313, True)
 ]
 
 # time (schedule) pool
-time_pool = [Time(w, n) for w in range(1, 6) for n in range(1, 6)]
+time_pool = [Time(w, n) for w in range(1, len(week_schedule.keys()) + 1)
+                        for n in range(1, len(time_schedule.keys()) + 1)]
 
 # teachers pool
 t_pool = [Teacher(name) for name in

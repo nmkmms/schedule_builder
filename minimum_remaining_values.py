@@ -21,10 +21,9 @@ def run_heuristic(pool):
 
     # make it a little bit funnier
     week_days = list(week_schedule.keys())
-    # shuffle(week_days)
+    shuffle(week_days)
     times = list(time_schedule.keys())
-    # shuffle(times)
-    count = 0
+    shuffle(times)
 
     for lesson in pool:
         found = False
@@ -34,7 +33,6 @@ def run_heuristic(pool):
                 if found: break
                 for room in c_pool:
                     duplicate = False
-                    count += 1
                     for i in range(len(schedule.lessons)):
                         # if room is booked at this time or teacher is busy
                         if (schedule.times[i].weekday == day and schedule.times[i].number == time and \
@@ -52,7 +50,6 @@ def run_heuristic(pool):
                         schedule.classrooms.append(classroom)
                         schedule.lessons.append(lesson)
 
-    print(count)
     return schedule
 
 

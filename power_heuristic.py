@@ -1,3 +1,4 @@
+"""First place lessons of most busy teachers (power heuristics)."""
 from collections import defaultdict
 from typing import List
 

@@ -6,8 +6,8 @@ from templates import Gen, Lesson, Classroom, Time, display_results
 from templates import l_pool, c_pool, time_pool
 
 
-START_POPULATION = 10
-ELITE_POPULATION = 2
+START_POPULATION = 100
+ELITE_POPULATION = 10
 CHILDREN_PER_GEN = (START_POPULATION - ELITE_POPULATION) // ELITE_POPULATION
 MAX_STEPS = 150
 
@@ -71,6 +71,7 @@ def run():
 
     # display results for solution
     display_results(solution)
+    assert len(solution.lessons) == len(l_pool)
 
 
 if __name__ == '__main__':
