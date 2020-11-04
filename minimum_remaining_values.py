@@ -1,5 +1,6 @@
 """First place lectures, then seminars (Minimum remaining values)."""
 from random import shuffle
+from typing import List
 
 from templates import Gen as Schedule, Lesson, Classroom, Time
 from templates import l_pool, c_pool, week_schedule, time_schedule, display_results
@@ -11,19 +12,17 @@ def run():
     l_pool.sort(key=lambda l: 0 if l.is_lecture else 1)
 
     schedule = run_heuristic(l_pool)
-
     display_results(schedule)
-    assert len(schedule.lessons) == len(l_pool), "Didn't go well"
 
 
-def run_heuristic(pool):
+def run_heuristic(pool: List[Lesson]) -> Schedule:
     schedule = Schedule([], [], [])
 
     # make it a little bit funnier
     week_days = list(week_schedule.keys())
-    shuffle(week_days)
+    # shuffle(week_days)
     times = list(time_schedule.keys())
-    shuffle(times)
+    # shuffle(times)
 
     for lesson in pool:
         found = False
@@ -50,6 +49,7 @@ def run_heuristic(pool):
                         schedule.classrooms.append(classroom)
                         schedule.lessons.append(lesson)
 
+    assert len(pool) == len(schedule.lessons)
     return schedule
 
 

@@ -1,6 +1,7 @@
-"""First place lessons of most busy teachers (affects more neighbours).
+"""First place lessons of less busy teachers and seminars (affects less neighbours)
 
-Power heuristics."""
+Least constraining values.
+."""
 from collections import defaultdict
 import time
 
@@ -13,7 +14,7 @@ def run():
     counter = defaultdict(int)
     for lesson in l_pool:
         counter[lesson.teacher.name] += 1
-    l_pool.sort(key=lambda l: counter[l.teacher.name])
+    l_pool.sort(key=lambda l: counter[l.teacher.name] + int(l.is_lecture), reverse=True)
 
     schedule = run_heuristic(l_pool)
     display_results(schedule)
